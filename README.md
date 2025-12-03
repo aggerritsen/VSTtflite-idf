@@ -2,7 +2,7 @@
 
 ## Hardware Pinout
 
-![T-SIM7080G-S3 Pinout](docs/Lilygo T-SIM7080G-S3 PINOUT.jpg)
+![T-SIM7080G-S3 Pinout](docs/Lilygo_T_SIM7080G_S3_PINOUT.jpg)
 
 Full pinout description: [docs/T-SIM7080G-S3_Pinout.md](docs/T-SIM7080G-S3_Pinout.md)
 
