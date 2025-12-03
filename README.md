@@ -4,14 +4,13 @@
 
 ![T-SIM7080G-S3 Pinout](docs/Lilygo_T_SIM7080G_S3_PINOUT.jpg)
 
-Full pinout description:\
-📄 **docs/T-SIM7080G-S3_Pinout.md**
+Full pinout description: [docs/T-SIM7080G-S3_Pinout.md](docs/T-SIM7080G-S3_Pinout.md)
 
 ## ESP-IDF Configuration
 
-See:\
-📄 **docs/ESP_IDF_Configuration.md**
+See: [docs/ESP_IDF_Configuration.md](docs/ESP_IDF_Configuration.md)
 
+## Project Overview
 # Project Overview
 
 This project runs a **192×192 fully-integer-quantized YOLOv8-derived
