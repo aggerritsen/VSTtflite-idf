@@ -1,9 +1,0 @@
-Command: cmake -G Ninja -B C:\Users\agger\esp-idf\examples\get-started\hello_world\build -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\agger\.espressif\python_env\idf6.1_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DIDF_TARGET=esp32s3 -DCCACHE_ENABLE=True C:\Users\agger\esp-idf\examples\get-started\hello_world
-Configuration Report               
-+---------------------------------+
-|  Parser Version: 1              |
-|  Verbosity: default             |
-|  Defaults policy: sdkconfig     |
-|  Status: Finished successfully  |
-|                                 |
-+---------------------------------+
