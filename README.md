@@ -1,69 +1,98 @@
-# VSTtflite-idf
+# VSTtflite-idf (ESP32-S3 YOLO Object Detection)
 
 ## Hardware Pinout
 
 ![T-SIM7080G-S3 Pinout](docs/Lilygo_T_SIM7080G_S3_PINOUT.jpg)
 
-Full pinout description: [docs/T-SIM7080G-S3_Pinout.md](docs/T-SIM7080G-S3_Pinout.md)
+Full pinout description:\
+📄 **docs/T-SIM7080G-S3_Pinout.md**
 
 ## ESP-IDF Configuration
 
-See: [docs/ESP_IDF_Configuration.md](docs/ESP_IDF_Configuration.md)
+See:\
+📄 **docs/ESP_IDF_Configuration.md**
 
-## Project Overview
+# Project Overview
 
-This project demonstrates running TensorFlow Lite Micro (TFLM) on the ESP32‑S3 T‑SIM7080G‑S3 board with:
+This project runs a **192×192 fully-integer-quantized YOLOv8-derived
+model** on the ESP32-S3 T-SIM7080G-S3 using the Espressif TensorFlow
+Lite Micro runtime.
 
-- SD card loading of `.tflite` models  
-- PSRAM-based tensor arena allocation  
-- SDMMC file system scanning  
-- Diagnostics of RAM, model ops, and interpreter initialization  
-- Logging heap usage during every major step  
+The system performs:
 
-The model is loaded from:
+-   SDMMC 1-bit SD card mounting\
+-   Model loading from SD\
+-   Tensor arena allocation in PSRAM (2 MB)\
+-   Real JPEG decoding (esp_jpeg / TJpgDec)\
+-   Nearest-neighbor 192×192 preprocessing\
+-   INT8 quantization + dequantization\
+-   Inference for *every* JPEG found recursively on the SD card\
+-   Per-image classification output\
+-   Saving the first preprocessed image (192×192 RGB PPM)
 
-```
-/sdcard/models/vespcv_swiftyolo_int8_vela.tflite
-```
+# Model Used
 
-⚠️ The current model contains **`ethos-u` custom ops**, which are not supported on ESP32‑class microcontrollers. A new model without ARM Ethos-U acceleration must be generated before inference can run.
+The active model is:
 
-## Features
+    /sdcard/models/yolov8n_2025-07-15_192_full_integer_quant.tflite
 
-- PSRAM 8 MB auto‑detected & validated
-- SD card mounted in 1‑bit SDMMC mode
-- Model loaded into PSRAM
-- Interpreter initialized with PSRAM tensor arena
-- Automatic directory scanning: `/sdcard/images`
-- Detailed heap printouts at every stage
+✔ Fully supported\
+✔ Built-in ops only\
+✔ Works on ESP32-S3\
+✔ AllocateTensors OK
 
-## Current Status
+# Required SD Card Structure
 
-✔ PSRAM OK  
-✔ SDMMC OK  
-✔ Model loaded OK  
-✖ AllocateTensors fails due to unsupported custom ops (`ethos-u`)
+    /sdcard/
+    │
+    ├─ models/
+    │   └─ yolov8n_2025-07-15_192_full_integer_quant.tflite
+    │
+    └─ images/
+        ├─ *.jpg
+        ├─ *.jpeg
+        ├─ subfolders/
+        │   └─ recursive images
 
-## Partition Table
+First preprocessed image saved as:
 
-Custom `partitions.csv` is used:
+    original.jpg
+    original_192x192.ppm
 
-```
-nvs,      data, nvs,     0x9000,  0x6000
-phy_init, data, phy,     0xf000,  0x1000
-factory,  app,  factory, 0x10000, 0xC00000
-storage,  data, 0x81,    0xC10000,0x2F0000
-```
+# Features
 
-## Repository Structure
+-   PSRAM (8 MB) detected\
+-   SDMMC 1-bit mode\
+-   JPEG decoding\
+-   Model loading into PSRAM\
+-   Preprocessing to 192×192\
+-   INT8 inference\
+-   Classification for *every* image
 
-```
-├─ main/
-│   ├─ app_main.cpp
-├─ docs/
-│   ├─ ESP_IDF_Configuration.md
-│   ├─ T-SIM7080G-S3_Pinout.md
-│   ├─ Lilygo T-SIM7080G-S3 PINOUT.jpg
-├─ partitions.csv
-├─ README.md
-```
+# Current Status
+
+✔ PSRAM OK\
+✔ SDMMC OK\
+✔ JPEG decoding OK\
+✔ Model loads correctly\
+✔ Tensors allocated OK\
+✔ Inference OK\
+✔ Classification on all images
+
+# Partition Table
+
+    nvs,      data, nvs,     0x9000,   0x6000
+    phy_init, data, phy,     0xf000,   0x1000
+    factory,  app,  factory, 0x10000,  0xC00000
+    storage,  data, 0x81,    0xC10000, 0x2F0000
+
+# Repository Structure
+
+    ├─ main/
+    │   ├─ app_main.cpp
+    ├─ docs/
+    │   ├─ ESP_IDF_Configuration.md
+    │   ├─ T-SIM7080G-S3_Pinout.md
+    │   ├─ Lilygo_T-SIM7080G-S3_PINOUT.jpg
+    ├─ partitions.csv
+    └─ README.md
