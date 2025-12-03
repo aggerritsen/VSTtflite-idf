@@ -6,6 +6,9 @@ idf_component_register(
         sdmmc
         fatfs
         esp-tflite-micro
+        esp_timer
+        esp_jpeg
     PRIV_REQUIRES
         nvs_flash
 )
+    
