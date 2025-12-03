@@ -10,7 +10,7 @@ Full pinout description: [docs/T-SIM7080G-S3_Pinout.md](docs/T-SIM7080G-S3_Pinou
 
 See: [docs/ESP_IDF_Configuration.md](docs/ESP_IDF_Configuration.md)
 
-## Project Overview
+
 # Project Overview
 
 This project runs a **192×192 fully-integer-quantized YOLOv8-derived
