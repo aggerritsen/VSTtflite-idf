@@ -107,5 +107,6 @@ First preprocessed image saved as:
     │   ├─ ESP_IDF_Configuration.md
     │   ├─ T-SIM7080G-S3_Pinout.md
     │   ├─ Lilygo_T-SIM7080G-S3_PINOUT.jpg
-    ├─ partitions.csv
+    ├─ partitions.csv (BE SURE TO USE THIS ONE!)
+    ├─ sdkconfig (BE SURE TO USE THIS ONE!)
     └─ README.md
