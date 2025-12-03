@@ -40,6 +40,17 @@ The active model is:
 ✔ Works on ESP32-S3\
 ✔ AllocateTensors OK
 
+# Required ESP-IDF Dependencies
+
+Run the following commands to add all necessary components to your ESP-IDF project:
+
+```bash
+idf.py add-dependency "espressif/esp_jpeg^2.0.3"
+idf.py add-dependency "espressif/esp-tflite-micro^1.0.0"
+idf.py add-dependency "espressif/esp_psram^1.0.0"
+idf.py add-dependency "espressif/esp_sdmmc^1.0.0"
+idf.py add-dependency "espressif/esp_vfs_fat^1.0.0"
+
 # Required SD Card Structure
 
     /sdcard/
@@ -87,6 +98,9 @@ First preprocessed image saved as:
 
 # Repository Structure
 
+    ├─ build/ (automatically when building)
+    ├─ compontents/ (automatically created)
+    ├─ managed_components/ (created by adding dependencies)
     ├─ main/
     │   ├─ app_main.cpp
     ├─ docs/
