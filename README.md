@@ -50,6 +50,7 @@ idf.py add-dependency "espressif/esp-tflite-micro^1.0.0"
 idf.py add-dependency "espressif/esp_psram^1.0.0"
 idf.py add-dependency "espressif/esp_sdmmc^1.0.0"
 idf.py add-dependency "espressif/esp_vfs_fat^1.0.0"
+```
 
 # Required SD Card Structure
 
