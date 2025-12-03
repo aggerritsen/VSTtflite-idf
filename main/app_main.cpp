@@ -56,9 +56,6 @@ static uint8_t                   *g_model_data   = nullptr;
 static uint8_t                   *g_tensor_arena = nullptr;
 static tflite::MicroInterpreter  *g_interpreter  = nullptr;
 
-// Alleen de eerste gepreprocessede image opslaan
-static bool g_saved_first_preprocessed = false;
-
 static void log_heap(const char *stage)
 {
     size_t free_internal = heap_caps_get_free_size(MALLOC_CAP_INTERNAL);
@@ -482,7 +479,7 @@ static bool preprocess_jpeg_to_input(const char *image_path)
 
     if (n != 1 || h != 192 || w != 192 || c != 3) {
         ESP_LOGW(TAG, "Model expects [1,192,192,3], got [%d,%d,%d,%d]",
-                 n,h,w,c);
+                 n, h, w, c);
     }
 
     if (input->type != kTfLiteInt8) {
@@ -501,23 +498,21 @@ static bool preprocess_jpeg_to_input(const char *image_path)
     std::vector<uint8_t> rgb_resized;
     resize_rgb888_nearest(rgb_src, src_w, src_h, rgb_resized, w, h);
 
-    if (!g_saved_first_preprocessed) {
-        save_rgb_to_ppm_next_to_original(image_path, rgb_resized, w, h);
-        g_saved_first_preprocessed = true;
-    }
+    // Save preprocessed RGB as PPM next to the original for EVERY image
+    save_rgb_to_ppm_next_to_original(image_path, rgb_resized, w, h);
 
-    const float scale = input->params.scale;
-    const int32_t zp = input->params.zero_point;
+    const float scale   = input->params.scale;
+    const int32_t zp    = input->params.zero_point;
 
     int8_t *dst = input->data.int8;
-    int total = w * h * c;
+    int total   = w * h * c;
 
     for (int i = 0; i < total; ++i) {
-        float f = (float)rgb_resized[i] / 255.0f;
-        float q = f / scale + zp;
+        float f  = (float)rgb_resized[i] / 255.0f;
+        float q  = f / scale + zp;
         int32_t qi = (int32_t)roundf(q);
         if (qi < -128) qi = -128;
-        if (qi > 127) qi = 127;
+        if (qi > 127)  qi = 127;
         dst[i] = (int8_t)qi;
     }
 
