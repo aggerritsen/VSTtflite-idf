@@ -60,6 +60,7 @@ Thumbs.db
 managed_components/
 versions/
 models/
+components/
 
 # SD card mount path (in case someone dumps files accidentally)
 sdcard/
