@@ -1,0 +1,22 @@
+Command: cmake -G Ninja -B C:\Users\agger\esp-idf\examples\system\deep_sleep\build -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Users\agger\.espressif\python_env\idf6.1_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DCCACHE_ENABLE=True C:\Users\agger\esp-idf\examples\system\deep_sleep
+Configuration Report                                                           
++-----------------------------------------------------------------------------+
+|  Parser Version: 1                                                          |
+|  Verbosity: default                                                         |
+|  Defaults policy: sdkconfig                                                 |
+|  Status: Finished with notifications                                        |
+|                                                                             |
+| Multiple Symbol/Choice Definitions                                          |
+| +-------------------------------------------------------------------------+ |
+| | Multiple definitions will have higher severity in the future. Please,   | |
+| | visit                                                                   | |
+| | https://docs.espressif.com/projects/esp-idf-kconfig/en/latest/kconfiglà | |
+| | for more information.                                                   | |
+| | EXAMPLE_EXT1_WAKEUP_PIN_1                                               | |
+| |         C:\Users\agger\esp-idf\examples\system\deep_sleep\main\Kconfigà | |
+| |         C:\Users\agger\esp-idf\examples\system\deep_sleep\main\Kconfigà | |
+| | EXAMPLE_EXT1_WAKEUP_PIN_2                                               | |
+| |         C:\Users\agger\esp-idf\examples\system\deep_sleep\main\Kconfigà | |
+| |         C:\Users\agger\esp-idf\examples\system\deep_sleep\main\Kconfigà | |
+| +-------------------------------------------------------------------------+ |
++-----------------------------------------------------------------------------+

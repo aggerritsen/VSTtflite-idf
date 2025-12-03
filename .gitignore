@@ -1,0 +1,71 @@
+# -----------------------------------------------------------------------------
+# ESP-IDF Build System
+# -----------------------------------------------------------------------------
+
+# Environment
+.devcontainer 
+
+# Build artifacts
+/build/
+/build/*
+
+# Ninja + CMake build intermediates
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.ninja
+*.cmake.in
+*.pb.cc
+*.pb.h
+*.inf
+
+# Partition table binaries
+partition_table/*.bin
+partition_table/*.csv~
+*.bin
+*.elf
+*.map
+
+# Bootloader output
+bootloader/
+
+# ESP-IDF auto-generated config
+#sdkconfig
+sdkconfig.old
+sdkconfig.defaults*
+
+# ESP-IDF Python venvs & tools
+.espressif/
+*.pyc
+__pycache__/
+pip-selfcheck.json
+
+# Logs
+*.log
+/build/log/
+
+# VSCode settings (optional)
+.vscode/
+*.code-workspace
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+# -----------------------------------------------------------------------------
+# Project-specific ignore
+# -----------------------------------------------------------------------------
+
+# Managed components installed via `idf.py add-dependency`
+managed_components/
+versions/
+models/
+
+# SD card mount path (in case someone dumps files accidentally)
+sdcard/
+
+# Backup files
+*~
+*.bak
+*.tmp
+
