@@ -61,6 +61,8 @@ managed_components/
 versions/
 models/
 components/
+!examples/esp32-camera/**
+
 
 # SD card mount path (in case someone dumps files accidentally)
 sdcard/
