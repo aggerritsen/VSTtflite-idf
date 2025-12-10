@@ -1,0 +1,116 @@
+﻿Address (Hex);Register Name;Default (Hex);R/W;Description
+00-04;RSVD;XX;–;Reserved
+05;R_BYPASS;0x1;RW;"Bypass DSP
+Bit[7:1]:    Reserved
+Bit[0]:       Bypass DSP select 0:    DSP
+1:    Bypass DSP, sensor out directly"
+06-43;RSVD;XX;–;Reserved
+44;Qs;0C;RW;Quantization Scale Factor
+45-4F;RSVD;XX;–;Reserved
+50;CTRLl[7:0];00;RW;"Bit[7]:       LP_DP
+Bit[6]:       Round Bit[5:3]:    V_DIVIDER Bit[2:0]:    H_DIVIDER"
+51;HSIZE[7:0];40;RW;H_SIZE[7:0] (real/4)
+52;VSIZE[7:0];F0;RW;V_SIZE[7:0] (real/4)
+53;XOFFL[7:0];00;RW;OFFSET_X[7:0]
+54;YOFFL[7:0];00;RW;OFFSET_Y[7:0]
+55;VHYX[7:0];08;RW;"Bit[7]:       V_SIZE[8]
+Bit[6:4]:    OFFSET_Y[10:8]
+Bit[3]:       H_SIZE[8]
+Bit[2:0]:    OFFSET_X[10:8]"
+56;DPRP[7:0];00;RW;Bit[7:4]:    DP_SELY Bit[3:0]:    DP_SELX
+57;TEST[3:0];00;RW;"Bit[7]:       H_SIZE[9]
+Bit[6:0]:    Reserved"
+5A;ZMOW[7:0];58;RW;OUTW[7:0] (real/4)
+5B;ZMOH[7:0];48;RW;OUTH[7:0] (real/4)
+5C;ZMHH[1:0];00;RW;"Bit[7:4]:    ZMSPD (zoom speed) Bit[2]:       OUTH[8]
+Bit[1:0]:    OUTW[9:8]"
+5D-7B;RSVD;XX;–;Reserved
+7C;BPADDR[3:0];00;RW;SDE Indirect Register Access: Address
+7D;BPDATA[7:0];00;RW;SDE Indirect Register Access: Data
+7E-85;RSVD;XX;–;Reserved
+86;CTRL2;0D;RW;"Module Enable
+Bit[7:6]:    Reserved Bit[5]:       DCW
+Bit[4]:       SDE
+Bit[3]:       UV_ADJ
+Bit[2]:       UV_AVG
+Bit[1]:       Reserved
+Bit[0]:       CMX"
+87;CTRL3;50;RW;"Module Enable Bit[7]:       BPC
+Bit[6]:       WPC
+Bit[5:0]:    Reserved"
+88-8B;RSVD;XX;–;Reserved
+8C;SIZEL[5:0];00;RW;{HSIZE[11], HSIZE[2:0], VSIZE[2:0]}
+8D-BF;RSVD;XX;–;Reserved
+C0;HSIZE8[7:0];80;RW;Image Horizontal Size HSIZE[10:3]
+C1;VSIZE8[7:0];60;RW;Image Vertical Size VSIZE[10:3]
+C2;CTRL0;0C;RW;"Module Enable
+Bit[7]:       AEC_EN
+Bit[6]:       AEC_SEL Bit[5]:       STAT_SEL Bit[4]:       VFIRST
+Bit[3]:       YUV422
+Bit[2]:       YUV_EN
+Bit[1]:       RGB_EN
+Bit[0]:       RAW_EN"
+C3;CTRL1;FF;RW;"Module Enable Bit[7]:       CIP
+Bit[6]:       DMY
+Bit[5]:       RAW_GMA Bit[4]:       DG
+Bit[3]:       AWB
+Bit[2]:       AWB_GAIN Bit[1]:       LENC
+Bit[0]:       PRE"
+C4-D2;RSVD;XX;–;Reserved
+D3;R_DVP_SP;82;RW;"Bit[7]:       Auto mode
+Bit[6:0]:    DVP output speed control
+DVP PCLK = sysclk (48)/[6:0] (YUV0);
+= sysclk (48)/(2*[6:0]) (RAW)"
+D4-D9;RSVD;XX;–;Reserved
+DA;IMAGE_MODE;00;RW;"Image Output Format Select Bit[7]:       Reserved
+Bit[6]:       Y8 enable for DVP Bit[5]:       Reserved
+Bit[4]:       JPEG output enable
+0:    Non-compressed
+1:    JPEG output Bit[3:2]:    DVP output format
+00:  YUV422
+01:  RAW10 (DVP)
+10:  RGB565
+11:  Reserved
+Bit[1]:       HREF timing select in DVP JPEG output mode 0:    HREF is same as sensor
+1:    HREF = VSYNC
+Bit[0]:       Byte swap enable for DVP
+0:    High byte first  YUYV (C2[4]=0) YVYU (C2[4] = 1)
+1:    Low byte first  UYVY (C2[4] =0) VYUY (C2[4] =1)"
+DB-DF;RSVD;XX;–;Reserved
+E0;RESET;04;RW;"Reset
+Bit[7]:       Reserved Bit[6]:       Microcontroller Bit[5]:       SCCB
+Bit[4]:       JPEG
+Bit[3]:       Reserved
+Bit[2]:       DVP
+Bit[1]:       IPU
+Bit[0]:       CIF"
+E1-EC;RSVD;XX;–;Reserved
+ED;REGED;1F;RW;"Register ED
+Bit[7:5]:    Reserved
+Bit[4]:       Clock output power-down pin status
+0:    Data output pin hold at last state before power-down
+1:    Tri-state data output pin upon power-down Bit[3:0]:    Reserved"
+EE-EF;RSVD;XX;–;Reserved
+F0;MS_SP;04;RW;SCCB Master Speed
+F1-F6;RSVD;XX;–;Reserved
+F7;SS_ID;60;RW;SCCB Slave ID
+F8;SS_CTRL;01;RW;"SCCB Slave Control Bit[7:6]:    Reserved
+Bit[5]:       Address auto-increase enable
+Bit[4]:       Reserved Bit[3]:       SCCB enable
+Bit[2]:       Delay SCCB master clock Bit[1]:       Enable SCCB master access
+Bit[0]:       Enable sensor pass through access"
+F9;MC_BIST;40;RW;"Bit[7]:       Microcontroller Reset Bit[6]:       Boot ROM select
+Bit[5]:       R/W 1 error for 12K-byte memory Bit[4]:       R/W 0 error for 12K-byte memory Bit[3]:       R/W 1 error for 512-byte memory Bit[2]:       R/W 0 error for 512-byte memory
+Bit[1]:       BIST busy bit for read; One-shot reset of microcontroller for write
+Bit[0]:       Launch BIST"
+FA;MC_AL;00;RW;Program Memory Pointer Address Low Byte
+FB;MC_AH;00;RW;Program Memory Pointer Address High Byte
+FC;MC_D;80;RW;"Program Memory Pointer Access Address
+Boundary of register address to separate DSP and sensor register"
+FD;P_CMD;00;RW;SCCB Protocol Command Register
+FE;P_STATUS;00;RW;SCCB Protocol Status Register
+FF;RA_DLMT;7F;RW;"Register Bank Select Bit[7:1]:    Reserved
+Bit[0]:       Register bank select
+0:    DSP address
+1:    Sensor address"
+;;;;

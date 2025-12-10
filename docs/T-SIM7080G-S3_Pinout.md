@@ -81,3 +81,7 @@
 |  RI   | GPIO03 |
 |  RXD  | GPIO04 |
 |  TXD  | GPIO05 |
+
+
+#define PMU_I2C_SDA_GPIO GPIO_NUM_7
+#define PMU_I2C_SCL_GPIO GPIO_NUM_6

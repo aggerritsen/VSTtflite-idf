@@ -1,0 +1,173 @@
+﻿Address (Hex);Register Name;Default (Hex);R/W;Description
+00;GAIN;00;RW;"AGC Gain Control LSBs Bit[7:0]:    Gain setting
+•      Range: 1x to 32x
+Gain = (Bit[7]+1) x (Bit[6]+1) x  (Bit[5]+1) x (Bit[4]+1) x (1+Bit[3:0]/16)
+Note: Set COM8[2] = 0 to disable AGC."
+01-02;RSVD;XX;–;Reserved
+03;COM1;"0F (UXGA)
+0A (SVGA),
+06 (CIF)";RW;"Common Control 1
+Bit[7:6]:    Dummy frame control
+00:  Reserved
+01:  Allow 1 dummy frame
+10:  Allow 3 dummy frames
+11:  Allow 7 dummy frames Bit[5:4]:    Reserved
+Bit[3:2]:    Vertical window end line control 2 LSBs (8 MSBs in VEND[7:0] (0x1A))
+Bit[1:0]:    Vertical window start line control 2 LSBs (8 MSBs in VSTRT[7:0] (0x19))"
+04;REG04;20;RW;"Register 04
+Bit[7]:       Horizontal mirror Bit[6]:       Vertical flip Bit[4]:       VREF bit[0] Bit[3]:       HREF bit[0]
+Bit[2]:       Reserved
+Bit[1:0]:    AEC[1:0]
+(AEC[15:10] is in register REG45[5:0] (0x45), AEC[9:2] is in register AEC[7:0] (0x10))"
+05-07;RSVD;XX;–;Reserved
+08;REG08;40;RW;Frame Exposure One-pin Control Pre-charge Row Number
+09;COM2;00;RW;"Common Control 2 Bit[7:5]:    Reserved
+Bit[4]:       Standby mode enable
+0:    Normal mode
+1:    Standby mode
+Bit[3]:       Reserved
+Bit[2]:       Pin PWDN/RESETB used as SLVS/SLHS Bit[1:0]:    Output drive select
+00:  1x capability
+01:  3x capability
+10:  2x capability
+11:  4x capability"
+0A;PIDH;26;R;Product ID Number MSB (Read only)
+0B;PIDL;41;R;Product ID Number LSB (Read only)
+0C;COM3;38;RW;"Common Control 3 Bit[7:3]:    Reserved
+Bit[2]:       Set banding manually
+0:    60 Hz
+1:    50 Hz
+Bit[1]:       Auto set banding Bit[0]:       Snapshot option
+0:    Enable live video output after snapshot sequence 1:    Output single frame only"
+0D-0F;RSVD;XX;–;Reserved
+10;AEC;33;RW;"Automatic Exposure Control 8 bits for AEC[9:2] (AEC[15:10] is in register REG45[5:0] (0x45), AEC[1:0] is in register REG04[1:0] (0x04))
+AEC[15:0]: Exposure time
+TEX = tLINE x AEC[15:0]
+Note: The maximum exposure time is 1 frame period even if TEX is longer than 1 frame period."
+11;CLKRC;00;RW;"Clock Rate Control
+Bit[7]:       Internal frequency doublers ON/OFF selection 0:    OFF
+1:    ON
+Bit[6]:       Reserved Bit[5:0]:    Clock divider
+CLK = XVCLK/(decimal value of CLKRC[5:0] + 1)"
+12;COM7;00;RW;"Common Control 7 Bit[7]:       SRST
+1:    Initiates system reset. All registers are set to factory default values after which the chip resumes normal operation
+Bit[6:4]:    Resolution selection
+000:   UXGA (full size) mode 010:   CIF mode
+100:   SVGA mode
+Bit[3]:       Reserved Bit[2]:       Zoom mode
+Bit[1]:       Color bar test pattern 0:    OFF
+1:    ON
+Bit[0]:       Reserved"
+13;COM8;C7;RW;"Common Control 8 Bit[7:6]:    Reserved
+Bit[5]:       Banding filter selection
+0:    OFF
+1:    ON, set minimum exposure time to 1/120s Bit[4:3]:    Reserved
+Bit[2]:       AGC auto/manual control selection 0:    Manual
+1:    Auto
+Bit[1]:       Reserved
+Bit[0]:       Exposure control
+0:    Manual
+1:    Auto"
+14;COM9;50;RW;"Common Control 9
+Bit[7:5]:    AGC gain ceiling, GH[2:0] 000:  2x
+001:  4x
+010:  8x
+011:  16x
+100:  32x
+101:  64x
+11x:  128x
+Bit[4:0]:    Reserved"
+15;COM10;00;RW;"Common Control 10 (if Bypass DSP is selected) Bit[7:6]:    Reserved
+Bit[5]:       PCLK output selection
+0:    PCLK always output
+1:    PCLK output qualified by HREF Bit[4]:       PCLK edge selection
+0:    Data is updated at the falling edge of PCLK (user can latch data at the next rising edge of PCLK)
+1:    Data is updated at the rising edge of PCLK (user can latch data at the next falling edge of PCLK)
+Bit[3]:       HREF output polarity
+0:    Output positive HREF
+1:    Output negative HREF, HREF negative for data valid
+Bit[2]:       Reserved Bit[1]:       VSYNC polarity
+0:    Positive
+1:    Negative
+Bit[0]:       Reserved"
+16;RSVD;XX;–;Reserved
+17;HREFST;11;RW;"Horizontal Window Start MSB 8 bits (3 LSBs in REG32[2:0] (0x32))
+Bit[10:0]:  Selects the start of the horizontal window, each LSB represents two pixels"
+T;HREFEND;"75 (UXGA),
+43 (SVGA, CIF)";RW;"Horizontal Window End MSB 8 bits (3 LSBs in REG32[5:3] (0x32))
+Bit[10:0]:  Selects the end of the horizontal window, each LSB represents two pixels"
+19;VSTRT;"01 (UXGA),
+00 (SVGA, CIF)";RW;"Vertical Window Line Start MSB 8 bits (2 LSBs in COM1[1:0] (0x03))
+Bit[9:0]:    Selects the start of the vertical window, each LSB represents two scan lines."
+1A;VEND;97;RW;"Vertical Window Line End MSB 8 bits (2 LSBs in COM1[3:2] (0x03))
+Bit[9:0]:    Selects the end of the vertical window, each LSB represents two scan lines."
+1B;RSVD;XX;–;Reserved
+1C;MIDH;7F;R;Manufacturer ID Byte – High    (Read only = 0x7F)
+1D;MIDL;A2;R;Manufacturer ID Byte – Low     (Read only = 0xA2)
+1E-23;RSVD;XX;–;Reserved
+24;AEW;78;RW;"Luminance Signal High Range for AEC/AGC Operation
+AEC/AGC values will decrease in auto mode when average luminance is greater than AEW[7:0]"
+25;AEB;68;RW;"Luminance Signal Low Range for AEC/AGC Operation
+AEC/AGC values will increase in auto mode when average luminance is less than AEB[7:0]"
+26;VV;D4;RW;"Fast Mode Large Step Range Threshold - effective only in AEC/AGC fast mode (COM8[7] = 1)
+Bit[7:4]:    High threshold Bit[3:0]:Low threshold
+Note: AEC/AGC may change in larger steps when luminance average is greater than VV[7:4] or less than VV[3:0]."
+27-29;RSVD;XX;–;Reserved
+2A;REG2A;00;RW;"Register 2A
+Bit[7:4]:    Line interval adjust value 4 MSBs (LSBs in FRARL[7:0] (0x2B))
+Bit[3:0]:    Reserved"
+2B;FRARL;00;RW;"Line Interval Adjustment Value LSB 8 bits (MSBs in REG2A[7:4] (0x2A))
+The frame rate will be adjusted by changing the line interval. Each LSB will add 1/1922 Tframe in UXGA and 1/1190 Tframe in SVGA mode to te frame period."
+2C;RSVD;XX;–;Reserved
+2D;ADDVSL;00;RW;"VSYNC Pulse Width LSB 8 bits
+Bit[7:0]:    Line periods added to VSYNC width. Default VSYNC output width is 4 x tline. Each LSB count will add 1 x tline to the VSYNC active period."
+;;;;
+2E;ADDVSH;00;RW;"VSYNC Pulse Width MSB 8 bits
+Bit[7:0]:    Line periods added to VSYNC width. Default VSYNC output width is 4 x tline. Each MSB count will add
+256 x tline to the VSYNC active period."
+2F;YAVG;00;RW;"Luminance Average (this register will auto update)
+Average Luminance is calculated from the B/Gb/Gr/R channel average as follows:
+B/Gb/Gr/R channel average =
+(BAVG[7:0] + (2 x GbAVG[7:0]) + RAVG[7:0]) x 0.25"
+30-31;RSVD;XX;–;Reserved
+32;REG32;"36 (UXGA),
+09 (SVGA, CIF)";RW;"Common Control 32
+Bit[7:6]:    Pixel clock divide option 00:  No effect on PCLK 01:  No effect on PCLK
+10:  PCLK frequency divide by 2
+11:  PCLK frequency divide by 4
+Bit[5:3]:    Horizontal window end position 3 LSBs (8 MSBs in register HREFEND[7:0] (0x18))
+Bit[2:0]:    Horizontal window start position 3 LSBs (8 MSBs in register HREFST[7:0] (0x17))"
+33;RSVD;XX;–;Reserved
+34;ARCOM2;20;RW;"Bit[7:3]:    Reserved
+Bit[2]:       Zoom window horizontal start point Bit[1:0]:    Reserved"
+35-44;RSVD;XX;–;Reserved
+45;REG45;00;RW;"Register 45
+Bit[7:6]:    AGC[9:8], AGC highest gain control Bit[5:0]:    AEC[15:10], AEC MSBs"
+46;FLL;00;RW;"Frame Length Adjustment LSBs
+Each bit will add 1 horizontal line timing in frame"
+47;FLH;00;RW;"Frame Length Adjustment MSBs
+Each bit will add 256 horizontal lines timing in frame"
+48;COM19;00;RW;"Common Control 19 Bit[7:2]:    Reserved
+Bit[1:0]:    Zoom mode vertical window start point 2 LSBs"
+49;ZOOMS;00;RW;Zoom Mode Vertical Window Start Point 8 MSBs
+4A;RSVD;XX;–;Reserved
+4B;COM22;20;RW;"Common Control 22
+Bit[7:0]:    Flash light control"
+4C-4D;RSVD;XX;–;Reserved
+4E;COM25;00;RW;Common Control 25 - reserved for banding Bit[7:6]:    50Hz Banding AEC 2 MSBs Bit[5:4]:    60HZ Banding AEC 2 MSBs Bit[3:0]:    Reserved
+4F;BD50;CA;RW;50Hz Banding AEC 8 LSBs
+50;BD60;A8;RW;60Hz Banding AEC 8 LSBs
+51-5C;RSVD;XX;–;Reserved
+5D;REG5D;00;RW;"Register 5D
+Bit[7:0]:    AVGsel[7:0], 16-zone average weight option"
+5E;REG5E;00;RW;"Register 5E
+Bit[7:0]:    AVGsel[15:8], 16-zone average weight option"
+5F;REG5F;00;RW;"Register 5F
+Bit[7:0]:    AVGsel[23:16], 16-zone average weight option"
+60;REG60;00;RW;"Register 60
+Bit[7:0]:    AVGsel[31:24], 16-zone average weight option"
+61;HISTO_LOW;80;RW;Histogram Algorithm Low Level
+62;HISTO_HIGH;90;RW;Histogram Algorithm High Level
+63-7E;RSVD;XX;–;Reserved
+NOTE:  All other registers are factory-reserved. Please contact OmniVision Technologies for reference register settings.;;;;
+;;;;
