@@ -1,14 +1,20 @@
 idf_component_register(
-    SRCS "app_main.cpp"
-    INCLUDE_DIRS "."
+    SRCS
+        "main.cpp"
+        "modem.cpp"
+        "init.cpp"
+        "pmu.cpp"
+    INCLUDE_DIRS
+        "."
     REQUIRES
-        driver
+        esp32-camera
         sdmmc
         fatfs
+        esp_jpeg
         esp-tflite-micro
         esp_timer
-        esp_jpeg
     PRIV_REQUIRES
         nvs_flash
 )
+
     

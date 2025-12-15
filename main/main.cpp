@@ -21,6 +21,7 @@
 #include "sdmmc_cmd.h"
 #include "esp_vfs_fat.h"
 #include "driver/gpio.h"
+#include "pmu.h"
 
 // REAL JPEG decoder (TJpgDec via espressif/esp_jpeg)
 #include "jpeg_decoder.h"
@@ -1105,7 +1106,16 @@ static bool run_inference_on_image(const char *image_path)
 
 extern "C" void app_main(void)
 {
-    ESP_LOGI(TAG, "Starting VESPA YOLO S3");
+    ESP_LOGI(TAG, "Initializing PMU");
+
+    pmu_init_i2c();
+    pmu_init();
+    pmu_verify_basic();
+
+    vTaskDelay(pdMS_TO_TICKS(100));
+
+
+    ESP_LOGI(TAG, "Starting VESPA YOLO S3");  
 
     if (!init_nvs()) return;
     if (!mount_sdcard()) return;

@@ -83,5 +83,11 @@
 |  TXD  | GPIO05 |
 
 
+## 6️⃣ Power domain
+
+| Modem          | Camera            | ESP32S3 | SDCard | Level conversion |
+| -------------- | ----------------- | ------- | ------ | ---------------- |
+| DC3/BLDO2(GPS) | ALDO1/ALDO2/ALDO4 | DC1     | ALDO3  | BLDO1            |
+
 #define PMU_I2C_SDA_GPIO GPIO_NUM_7
 #define PMU_I2C_SCL_GPIO GPIO_NUM_6
