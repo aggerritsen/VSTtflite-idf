@@ -22,6 +22,11 @@ This project runs on an **ESP32-S3–class board** with:
 
 The pipeline is designed to be deterministic and observable, not minimal.
 
+**HTTPD**
+Realtime image preview is available via webserver:
+- SSID: **CAM-S3** (no password)
+- Webpage http://192.168.4.1
+
 ---
 
 ### Software stack
