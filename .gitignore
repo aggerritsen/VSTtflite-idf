@@ -57,11 +57,10 @@ Thumbs.db
 # -----------------------------------------------------------------------------
 
 # Managed components installed via `idf.py add-dependency`
-managed_components/
 versions/
 models/
 components/
-!examples/esp32-camera/**
+examples/
 
 
 # SD card mount path (in case someone dumps files accidentally)

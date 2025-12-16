@@ -83,6 +83,13 @@
 |  TXD  | GPIO05 |
 
 
+## SD Card
+| Signal |  GPIO  |
+|-------|------|
+|  CMD  | GPIO39 |
+|  CLK  | GPIO38 |
+|  DATA | GPIO40 |
+
 ## 6️⃣ Power domain
 
 | Modem          | Camera            | ESP32S3 | SDCard | Level conversion |
