@@ -67,6 +67,11 @@ Additional project modules:
 /sdcard/config/config.txt
 /sdcard/models/yolov8n_2025-07-15_192_full_integer_quant.tflite
 ```
+and place this inside:
+```
+// sdcard/config/config.txt
+#define MODEL "yolov8n_2025-07-15_192_full_integer_quant.tflite"
+```
 
 ---
 
@@ -326,22 +331,16 @@ The following documents provide detailed background and implementation specifics
 - [PMU_README.md](./docs/PMU_README.md)  
   Detailed description of the AXP2101 PMU, power rails, and power-up sequencing.
 
-- [CAM_SD_INIT.md](./docs/CAM_SD_INIT.md)  
-  Camera and SD card initialization details, constraints, and failure modes.
-
-- [MODEM.md](./docs/MODEM.md)  
-  Modem integration, UART handling, and timestamp acquisition/parsing.
-
-- [T-SIM7080G-S3_Pinout.md](.docs/T-SIM7080G-S3_Pinout.md)
+- [T-SIM7080G-S3_Pinout.md](./docs/T-SIM7080G-S3_Pinout.md)
   Overview of pins and GPIO's
 
-- [User-Manual-6032606.pdf](.docs/User-Manual-6032606.pdf)
+- [User-Manual-6032606.pdf](./docs/User-Manual-6032606.pdf)
   Documentation in T-SIM7080G-S3 board
 
-- [Camera_OV2640.pdf](.docs/Camera_OV2640.pdf)
+- [Camera_OV2640.pdf](./docs/Camera_OV2640.pdf)
   Documentation on camera OV2640
 
-- [AXP2101_Datasheet_V1.0_en_3832.pdf](.docs/AXP2101_Datasheet_V1.0_en_3832.pdf)  
+- [AXP2101_Datasheet_V1.0_en_3832.pdf](./docs/AXP2101_Datasheet_V1.0_en_3832.pdf)  
   Documentation on AXP2101 Power module
 
 - [README.md](./docs/README.md)  
