@@ -67,7 +67,7 @@ Additional project modules:
 /sdcard/config/config.txt
 /sdcard/models/yolov8n_2025-07-15_192_full_integer_quant.tflite
 ```
-and place this inside:
+   and place this inside:
 ```
 // sdcard/config/config.txt
 #define MODEL "yolov8n_2025-07-15_192_full_integer_quant.tflite"
